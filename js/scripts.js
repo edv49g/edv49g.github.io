@@ -36,11 +36,11 @@ function deslizar(event){ //para celular
 	var x = event.touches[0].clientX;
 	let dX = x-x0;
 	if( Math.abs(dX)>60){
-	t0++;
-	if(t0>3){
-	     dX>0?diaAnterior():diaSiguiente();
-	     t0=0;
-	 }
+		t0++;
+		if(t0>3){
+			dX>0?diaAnterior():diaSiguiente();
+			t0=0;
+		}
 	}
 	x = null;
 }
@@ -54,11 +54,11 @@ function deslizar2(event){ //para celular
 	var x = event.touches[0].clientX;
 	let dX = x-x0;
 	if( Math.abs(dX)>60){
-	t0++;
-	if(t0>4){
-	     dX>0?mesPrevio():mesProximo();
-	     t0=0;
-	}
+		t0++;
+		if(t0>4){
+		     dX>0?mesPrevio():mesProximo();
+		     t0=0;
+		}
 	}
 	x = null;
 }
@@ -83,24 +83,24 @@ function calendario(){
 	dias = 1;
 	ultimo = 32 - new Date(Fecha.getFullYear(), Fecha.getMonth(), 32).getDate();
 	for(j=1; j<7; j++){
-	for(i=0; i<7; i++){
-	    if ( (j-1)*7+i+1>inicio && dias<ultimo+1 ){
-		tablita.lastChild.childNodes[j*2+2].childNodes[i].innerHTML = dias;
-		tablita.lastChild.childNodes[j*2+2].childNodes[i].style = "background: " + colores[patron[(ddias+dias)%42]-1];
-		dias++;
-	    } else {
-		tablita.lastChild.childNodes[j*2+2].childNodes[i].innerHTML = "&nbsp;";
-		tablita.lastChild.childNodes[j*2+2].childNodes[i].removeAttribute("style");//blanqueo estilo si tiene
-	    }
-	}
+		for(i=0; i<7; i++){
+		    if ( (j-1)*7+i+1>inicio && dias<ultimo+1 ){
+			tablita.lastChild.childNodes[j*2+2].childNodes[i].innerHTML = dias;
+			tablita.lastChild.childNodes[j*2+2].childNodes[i].style = "background: " + colores[patron[(ddias+dias)%42]-1];
+			dias++;
+		    } else {
+			tablita.lastChild.childNodes[j*2+2].childNodes[i].innerHTML = "&nbsp;";
+			tablita.lastChild.childNodes[j*2+2].childNodes[i].removeAttribute("style");//blanqueo estilo si tiene
+		    }
+		}
 	}
 	//pintar el dia actual
 	let Temporal = new Date();
 	//Temporal. setDate(Temporal.getDate()-10);
 	if( (Fecha.getFullYear() == Temporal.getFullYear()) && (Fecha.getMonth() == Temporal.getMonth()) ){
-	let fila = Math.trunc((Temporal.getDate() + inicio -1)/7) + 2;
-	let col = ((Temporal.getDate() + inicio+6) % 7);  
-	tablita.lastChild.childNodes[fila*2].childNodes[col].style.border = "dotted 3px";
+		let fila = Math.trunc((Temporal.getDate() + inicio -1)/7) + 2;
+		let col = ((Temporal.getDate() + inicio+6) % 7);  
+		tablita.lastChild.childNodes[fila*2].childNodes[col].style.border = "dotted 3px";
 	}
 }
 function mesPrevio(){
