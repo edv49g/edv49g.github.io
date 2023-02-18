@@ -182,7 +182,7 @@ input[type="color"] { opacity:0; }
 hr { color: white } 
 .fondo { background-color: #232629; }
 .sel { background-color: #cb4335; }
-.config { text-align: center; }
+.config { text-align: center; color:white; }
 #up1, #up2, #up3, #dw1, #dw2, #dw3 { cursor: pointer; }
 #dd, #mm, #yyyy { 
 	border-top: 1px solid green; 
