@@ -222,7 +222,7 @@ function CrearTabla(){
 	cant = 7; //automatizar !!!
 	texto = "<table class='tablita tabla2' id='almanaque'><tr><td colspan='" + cant + "' class='mes' id='mes2'>fecha</td></tr>";
 	for(fil=0; fil<10; fil++){
-		texto += "<tr>";
+		texto += fil==1?"<tr class='col'>":"<tr>";
 		for(col=0; col<cant; col++){
 			if(col==0)
 				texto += "<td class='col'>" + datos[fil] + "</td>";
