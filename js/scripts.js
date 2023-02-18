@@ -3,7 +3,7 @@ let color = "#cb4335";
 let cant = 7;
 let x0 = 0, t0 =0;
 let guardia = [1,2,3,4,5,6];
-const colores = ["#6ec16e", "#d28a31", "#9a2626", "#4d4dcc", "#2727d2", "#232629","#232629","#232629"]; // corresponden con M,T,N,D,R,FC,FL2,FL1
+const colores = ["#6ec16e", "#d28a31", "#9a2626", "#4d4dcc", "#2727d2", "#17202a","#17202a","#17202a"]; // corresponden con M,T,N,D,R,FC,FL2,FL1
 const diaSemana = [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"];
 const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 let patron = [1, 1, 1, 2, 2, 3, 3, 8, 8, 8, 8, 8, 1, 1, 2, 2, 2, 3, 3, 7, 7, 7, 7, 7, 1, 1, 2, 2, 3, 3, 3, 6, 6, 4, 4, 4, 5, 5, 4, 4, 6, 6]; //1:M , 2:T, 3:N, 4:D
@@ -174,7 +174,7 @@ function pintar() {
 			//tabla.lastChild.childNodes[6+j*2].childNodes[i+1].innerHTML = valor<1?"&nbsp;":valor;
 			tabla.lastChild.childNodes[3+j].childNodes[i+1].innerHTML = valor<1?"&nbsp;":valor;
 			//tabla.lastChild.childNodes[6+j*2].childNodes[i+1].style.backgroundColor = "#232629";
-			tabla.lastChild.childNodes[3+j].childNodes[i+1].style.backgroundColor = "#232629";
+			tabla.lastChild.childNodes[3+j].childNodes[i+1].style.backgroundColor = colores[6]; //color de franco
 			//tabla.lastChild.childNodes[3+j].childNodes[i+1].className = "fondo";
 			if(document.getElementById("guardia").value == valor){
 				//tabla.lastChild.childNodes[6+j*2].childNodes[i+1].style.backgroundColor = color;
@@ -197,14 +197,14 @@ function colorear(){
 }
 function mostrarSolapa(solapa) {
 	if(solapa == 1){
-                document.getElementsByClassName("menu")[0].style.backgroundColor = "#17202a";
+                document.getElementsByClassName("menu")[0].style.backgroundColor = colores[6];
                 document.getElementsByClassName("menu")[1].style.backgroundColor = "inherit";
 		document.getElementsByClassName("menu")[0].style.color = "white";
 		document.getElementsByClassName("menu")[1].style.color = "#65696f";
                 document.getElementById("solapa2").style.display = "none";
                 document.getElementById("solapa1").style.display = "block";
             } else {
-                document.getElementsByClassName("menu")[1].style.backgroundColor = "#17202a";
+                document.getElementsByClassName("menu")[1].style.backgroundColor = colores[6];
                 document.getElementsByClassName("menu")[0].style.backgroundColor = "inherit";
 		document.getElementsByClassName("menu")[1].style.color = "white";
 		document.getElementsByClassName("menu")[0].style.color = "#65696f";
