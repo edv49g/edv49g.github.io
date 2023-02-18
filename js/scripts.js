@@ -150,7 +150,7 @@ function pintar() {
 	for(i=0; i<cant-1; i++){
 		tabla.lastChild.childNodes[2].childNodes[i+1].innerHTML = diaSemana[(FechaOrigen.getDay()+i+5)%7];
 		tmp = SumarDias(FechaOrigen, i-2);
-		tabla.lastChild.childNodes[2].childNodes[i+1].innerHTML = tmp.getDate();
+		tabla.lastChild.childNodes[1].childNodes[i+1].innerHTML = tmp.getDate();
 		indice = (Math.floor(Math.abs(tmp2-tmp)/(1000*3600*24)))%42; //averiguo para la G1
 		//para una guardia X se tiene el mismo esquema de la G1 + 7*(7-X)
 		//Gn+1 = (Gn + 7)%42
