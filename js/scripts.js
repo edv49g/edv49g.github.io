@@ -93,7 +93,6 @@ function calendario(){
 	}
 	//pintar el dia actual
 	let Temporal = new Date();
-	//Temporal. setDate(Temporal.getDate()-10);
 	if( (Fecha.getFullYear() == Temporal.getFullYear()) && (Fecha.getMonth() == Temporal.getMonth()) ){
 		let fila = Math.trunc((Temporal.getDate() + inicio -1)/7) + 2;
 		let col = ((Temporal.getDate() + inicio+6) % 7);  
@@ -148,17 +147,10 @@ function pintar() {
 	let tabla = document.getElementById("almanaque");
 
 	tabla.lastChild.firstChild.childNodes[0].innerHTML = meses[FechaOrigen.getMonth()] + " - " + FechaOrigen.getFullYear();
-	//document.getElementById("mes-anio").innerHTML = meses[FechaOrigen.getMonth()] + " - " + FechaOrigen.getFullYear();
-	//document.getElementById("fecha").valueAsDate = FechaOrigen;
-	//ver desfasaje entre la fecha (input) y el calendario (tabla)
-	//for(i=0; i<6; i++){
 	for(i=0; i<cant-1; i++){
 		tabla.lastChild.childNodes[4].childNodes[i+1].innerHTML = diaSemana[(FechaOrigen.getDay()+i+5)%7];
-		//FechaOrigen = SumarDias(FechaOrigen, i-2);
-		//tmp.setDate(FechaOrigen.getDate()+i-2);
 		tmp = SumarDias(FechaOrigen, i-2);
 		tabla.lastChild.childNodes[2].childNodes[i+1].innerHTML = tmp.getDate();
-		//indice = (Math.floor(Math.abs(FechaInicio-tmp)/(1000*3600*24)))%42; //averiguo para la G1
 		indice = (Math.floor(Math.abs(tmp2-tmp)/(1000*3600*24)))%42; //averiguo para la G1
 		//para una guardia X se tiene el mismo esquema de la G1 + 7*(7-X)
 		//Gn+1 = (Gn + 7)%42
@@ -171,29 +163,13 @@ function pintar() {
 
 		for(j=0; j<8;j++){
 			valor = guardia.indexOf(j+1)+1;
-			//tabla.lastChild.childNodes[6+j*2].childNodes[i+1].innerHTML = valor<1?"&nbsp;":valor;
 			tabla.lastChild.childNodes[3+j].childNodes[i+1].innerHTML = valor<1?"&nbsp;":valor;
-			//tabla.lastChild.childNodes[6+j*2].childNodes[i+1].style.backgroundColor = "#232629";
 			tabla.lastChild.childNodes[3+j].childNodes[i+1].style.backgroundColor = colores[6]; //color de franco
-			//tabla.lastChild.childNodes[3+j].childNodes[i+1].className = "fondo";
 			if(document.getElementById("guardia").value == valor){
-				//tabla.lastChild.childNodes[6+j*2].childNodes[i+1].style.backgroundColor = color;
 				tabla.lastChild.childNodes[3+j].childNodes[i+1].style.backgroundColor = color;
-				//tabla.lastChild.childNodes[3+j].childNodes[i+1].className = "sel";
-				//document.styleSheets[0].cssRules[20].style.border = "1px solid blue";
 			}
 		}
 	}
-}
-function navegar(){
-	/*const tmp = document.getElementById("fecha").valueAsDate;
-	tmp.setDate(tmp.getDate()+1);
-	FechaOrigen = tmp;*/
-	actualizar();
-}
-function colorear(){
-	color = document.getElementById("color").value;
-	document.getElementById("fondo-color").style.backgroundColor = color;
 }
 function mostrarSolapa(solapa) {
 	if(solapa == 1){
@@ -220,22 +196,25 @@ function CrearTabla(){
 	const datos = [ "&nbsp;", "DIA", "M", "T", "N", "D", "R", "FC", "FL1", "FL2" ];
 	//cant = window.innerWidth<600?7:42;
 	cant = 7; //automatizar !!!
-	texto = "<table class='tablita tabla2' id='almanaque'><tr><td colspan='" + cant + "' class='mes' id='mes2'>fecha</td></tr>";
+	texto = "<table class='tablita tabla2' id='almanaque'><tr>";
+	texto += "<td><a href='#' onclick='diaAnterior()' class='nav'>&#9665;</a></td>";
+	texto += "<td colspan='" + (cant-2) + "' class='mes' id='mes2'>fecha</td>";
+	texto += "<td><a href='#' onclick='diaSiguiente()' class='nav'>&#9655;</a></td>";
+	texto += "</tr>";
 	for(fil=0; fil<10; fil++){
-		texto += fil==1?"<tr class='col'>":"<tr>";
+		texto += fil<2?"<tr class='col'>":"<tr>";
 		for(col=0; col<cant; col++){
 			if(col==0)
 				texto += "<td class='col'>" + datos[fil] + "</td>";
 			else {
 				texto += (col==Math.round(cant/2)-1)?"<td class='c'>":"<td>";
-				texto += (fil==0?diaSemana[col%7]:(fil+col)) + "</td>";
+				texto += (fil==1?diaSemana[col%7]:(fil+col)) + "</td>";
 			}
 		}
 		texto += "</tr>";
 	}
-	texto += "<tr><td colspan=3><a href='#' onclick='diaAnterior()' class='nav largo'>&#9665;</a></td><td colspan=" + (cant-6) + " class='c2'>&nbsp;</td><td colspan=3><a href='#' onclick='diaSiguiente()' class='nav largo'>&#9655;</a></td></tr>";
 	texto += "</table>";
-	document.getElementById("solapa2").innerHTML = texto;
+	document.getElementById("tabla2").innerHTML = texto;
 	//pintar zona media
 	for(i=1; i<11; i++)
 		document.getElementById("almanaque").lastChild.childNodes[i].childNodes[Math.round(cant/2)-1].className = "c";
