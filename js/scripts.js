@@ -148,7 +148,7 @@ function pintar() {
 
 	tabla.lastChild.firstChild.childNodes[1].innerHTML = meses[FechaOrigen.getMonth()] + " - " + FechaOrigen.getFullYear();
 	for(i=0; i<cant-1; i++){
-		tabla.lastChild.childNodes[4].childNodes[i+1].innerHTML = diaSemana[(FechaOrigen.getDay()+i+5)%7];
+		tabla.lastChild.childNodes[2].childNodes[i+1].innerHTML = diaSemana[(FechaOrigen.getDay()+i+5)%7];
 		tmp = SumarDias(FechaOrigen, i-2);
 		tabla.lastChild.childNodes[2].childNodes[i+1].innerHTML = tmp.getDate();
 		indice = (Math.floor(Math.abs(tmp2-tmp)/(1000*3600*24)))%42; //averiguo para la G1
