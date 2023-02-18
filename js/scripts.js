@@ -18,17 +18,14 @@ function inicializar(){
 	document.getElementById("calendario").addEventListener("touchstart", inicioToque2, false); //para celular
 	document.getElementById("mes1").addEventListener("click", modificarMes, false);
 	document.getElementById("mes2").addEventListener("click", modificarMes, false);
-	document.getElementsByClassName("menu")[0].style.backgroundColor = "#38444d";
-	document.getElementsByClassName("menu")[1].style.backgroundColor = "inherit";
-	document.getElementById("solapa2").style.display = "none";
-	document.getElementById("solapa1").style.display = "block";
-	document.getElementById("modal").style.display = "none";
 	document.getElementById("up1").addEventListener("click", incDD, false);
 	document.getElementById("up2").addEventListener("click", incMM, false);
 	document.getElementById("up3").addEventListener("click", incYY, false);
 	document.getElementById("dw1").addEventListener("click", decDD, false);
 	document.getElementById("dw2").addEventListener("click", decMM, false);
 	document.getElementById("dw3").addEventListener("click", decYY, false);
+	document.getElementById("modal").style.display = "none";
+	mostrarSolapa(1);
 	actualizar();
 }
 function deslizar(event){ //para celular
@@ -200,16 +197,20 @@ function colorear(){
 }
 function mostrarSolapa(solapa) {
 	if(solapa == 1){
-		document.getElementsByClassName("menu")[0].style.backgroundColor = "#38444d";
-		document.getElementsByClassName("menu")[1].style.backgroundColor = "inherit";
-		document.getElementById("solapa2").style.display = "none";
-		document.getElementById("solapa1").style.display = "block";
-	} else {
-		document.getElementsByClassName("menu")[1].style.backgroundColor = "#38444d";
-		document.getElementsByClassName("menu")[0].style.backgroundColor = "inherit";
-		document.getElementById("solapa1").style.display = "none";
-		document.getElementById("solapa2").style.display = "block";
-	}
+                document.getElementsByClassName("menu")[0].style.backgroundColor = "#17202a";
+                document.getElementsByClassName("menu")[1].style.backgroundColor = "inherit";
+		document.getElementsByClassName("menu")[0].style.color = "white";
+		document.getElementsByClassName("menu")[1].style.color = "#65696f";
+                document.getElementById("solapa2").style.display = "none";
+                document.getElementById("solapa1").style.display = "block";
+            } else {
+                document.getElementsByClassName("menu")[1].style.backgroundColor = "#17202a";
+                document.getElementsByClassName("menu")[0].style.backgroundColor = "inherit";
+		document.getElementsByClassName("menu")[1].style.color = "white";
+		document.getElementsByClassName("menu")[0].style.color = "#65696f";
+                document.getElementById("solapa1").style.display = "none";
+                document.getElementById("solapa2").style.display = "block";
+            }
 }
 function modificarMes(){
 	document.getElementById("modal").style.display = "block";
