@@ -1,80 +1,58 @@
 <!DOCTYPE html>
 <html>
-    <head>
-    <title>Calendario de turnos</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-        <link rel="stylesheet" type="text/css" href="css/estilos.css">
-        <script type="text/javascript" src="js/scripts.js"></script>
-    </head>
-    <body OnLoad="inicializar()">
-        <div class="menu-botones">
-            <button class="menu b1" onclick="mostrarSolapa(1)">Calendario</button>
-            <button class="menu b2" onclick="mostrarSolapa(2)">Esquema</button>
-        </div>
-        <div class="medio" id="solapa1" style="display:none">
-            <div>
-                <label for="guardia" class="titulo">Diagrama de guardia</label>
-                <select class="entrada" OnChange="actualizar()" id="guardia">
-                    <option value=1 selected>G1</option>
-                    <option value=2>G2</option>
-                    <option value=3>G3</option>
-                    <option value=4>G4</option>
-                    <option value=5>G5</option>
-                    <option value=6>G6</option>
-                </select>
-            </div>
-            <table class="tablita" id="calendario">
-                <tr><td><a href="#" onclick="mesPrevio()" class="nav">&#9665;</a></td><td colspan=5 class="mes" id="mes1">mes y anio</td><td><a href="#" onclick="mesProximo()" class="nav">&#9655;</a></td></tr>
-                <tr class="col"><td>Do</td><td>Lu</td><td>Ma</td><td>Mi</td><td>Ju</td><td>Vi</td><td>Sa</td></tr>
-                <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-                <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-                <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-                <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-                <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-                <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-            </table>
-            <div class="referencias"><p class="foot">Referencias:</p>
-                <strong class="M">&nbsp;Ma&ntilde;ana&nbsp;</strong>
-                <strong class="T">&nbsp;Tarde&nbsp;</strong>
-                <strong class="N">&nbsp;Noche&nbsp;</strong>
-                <strong class="D">&nbsp;Disponible&nbsp;</strong>
-            </div>
-        </div>
-        <div class="medio" id="solapa2" style="display:block">
-            <!--
-			<table class="tablita tabla2" id="almanaque">
-                <tr><td colspan=7 class="mes" onclick="modificarMes()">mes y anio</td></tr>
-                <tr><td>&nbsp;</td><td>-2</td><td>-1</td><td class='c c2'>0</td><td>+1</td><td>+2</td><td>+3</td></tr>
-                <tr class="col"><td>DIA</td><td>V</td><td>S</td><td class='c'>D</td><td>L</td><td>M</td><td>M</td></tr>
-                <tr><td class='col'>M  </td><td>1</td><td>2</td><td class='c'>3</td><td>4</td><td>5</td><td>6</td></tr>
-                <tr><td class='col'>T  </td><td>7</td><td>8</td><td class='c'>9</td><td>10</td><td>11</td><td>12</td></tr>
-                <tr><td class='col'>N  </td><td>13</td><td>14</td><td class='c'>15</td><td>16</td><td>17</td><td>18</td></tr>
-                <tr><td class='col'>D  </td><td>19</td><td>20</td><td class='c'>21</td><td>22</td><td>23</td><td>24</td></tr>
-                <tr><td class='col'>R  </td><td>25</td><td>26</td><td class='c'>27</td><td>28</td><td>29</td><td>30</td></tr>
-                <tr><td class='col'>FC </td><td>31</td><td>32</td><td class='c'>33</td><td>34</td><td>35</td><td>36</td></tr>
-                <tr><td class='col'>FL1</td><td>37</td><td>38</td><td class='c'>39</td><td>40</td><td>41</td><td>42</td></tr>
-                <tr><td class='col'>FL2</td><td>43</td><td>44</td><td class='c'>45</td><td>46</td><td>47</td><td>48</td></tr>
-                <tr><td colspan=3><a href="#" onclick="diaAnterior()" class="nav largo">&#9665;</a></td><td class='c2'>&nbsp;</td><td colspan=3><a href="#" onclick="diaSiguiente()" class="nav largo">&#9655;</a></td></tr>
-            </table>
-			-->
-            <!--
-            <div id="fondo-color" class="redondo"><input type="color" id="color" class="redondo" onchange="colorear()"></div>
-            -->
-        </div>
+	<head>
+		<title>Calendario de turnos</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<link rel="stylesheet" type="text/css" href="css/estilos.css">
+		<script type="text/javascript" src="js/scripts.js"></script>
+	</head>
+	<body OnLoad="inicializar()">
+		<div class="menu-botones">
+			<button class="menu b1" onclick="mostrarSolapa(1)">Calendario</button>
+			<button class="menu b2" onclick="mostrarSolapa(2)">Esquema</button>
+		</div>
+		<div class="medio" id="solapa1" style="display:none">
+			<label for="guardia" class="titulo">Diagrama de guardia</label>
+				<select class="entrada" OnChange="actualizar()" id="guardia">
+				    <option value=1 selected>G1</option>
+				    <option value=2>G2</option>
+				    <option value=3>G3</option>
+				    <option value=4>G4</option>
+				    <option value=5>G5</option>
+				    <option value=6>G6</option>
+				</select>
+			<table class="tablita" id="calendario">
+				<tr><td><a href="#" onclick="mesPrevio()" class="nav">&#9665;</a></td><td colspan=5 class="mes" id="mes1">mes y anio</td><td><a href="#" onclick="mesProximo()" class="nav">&#9655;</a></td></tr>
+				<tr class="col"><td>Do</td><td>Lu</td><td>Ma</td><td>Mi</td><td>Ju</td><td>Vi</td><td>Sa</td></tr>
+				<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+				<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+				<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+				<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+				<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+				<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+			</table>
+			<div class="referencias"><p class="foot">Referencias:</p>
+				<strong class="M">&nbsp;Ma&ntilde;ana&nbsp;</strong>
+				<strong class="T">&nbsp;Tarde&nbsp;</strong>
+				<strong class="N">&nbsp;Noche&nbsp;</strong>
+				<strong class="D">&nbsp;Disponible&nbsp;</strong>
+			</div>
+		</div>
+		<div class="medio" id="solapa2" style="display:block">
+			<p class="titulo2">Esquema de rotaci&oacute;n</p>
+			<div id="tabla2"></div>
+		</div>
 		<div id="modal" class="modal">
 			<div class="modal-content">
-			<!-- <span class="close" id="close">&times;</span> -->
-			<p class="titulo-modal">Seleccionar fecha: </p>
-			
-			<!-- <input type="date" id="fecha" class="fecha"> -->
-            <table class="config">
-                <tr><td id="up1">&#9650;</td><td>&nbsp;</td><td id="up2">&#9650;</td><td>&nbsp;</td><td id="up3">&#9650;</td></tr>
-                <tr><td id="dd">17</td><td>&nbsp;</td><td id="mm">Febrero</td><td>&nbsp;</td><td id="yyyy">2023</td></tr>
-                <tr><td id="dw1">&#9660;</td><td>&nbsp;</td><td id="dw2">&#9660;</td><td>&nbsp;</td><td id="dw3">&#9660;</td></tr>
-			</table>
-			<button class="close" id="close">&#10004;</button>
-			<a href="#" onclick="actual()" class="hoy">Hoy</a>
+				<p class="titulo-modal">Seleccionar fecha: </p>
+				<table class="config">
+					<tr><td id="up1">&#9650;</td><td>&nbsp;</td><td id="up2">&#9650;</td><td>&nbsp;</td><td id="up3">&#9650;</td></tr>
+					<tr><td id="dd">17</td><td>&nbsp;</td><td id="mm">Febrero</td><td>&nbsp;</td><td id="yyyy">2023</td></tr>
+					<tr><td id="dw1">&#9660;</td><td>&nbsp;</td><td id="dw2">&#9660;</td><td>&nbsp;</td><td id="dw3">&#9660;</td></tr>
+				</table>
+				<button class="close" id="close">&#10004;</button>
+				<a href="#" onclick="actual()" class="hoy">Hoy</a>
 			</div>
 		</div>
 	</body>
