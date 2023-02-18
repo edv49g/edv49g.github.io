@@ -146,7 +146,7 @@ function pintar() {
 	tmp2 = new Date(2022,03,1); //dato de inicio de la guardia 1
 	let tabla = document.getElementById("almanaque");
 
-	tabla.lastChild.firstChild.childNodes[0].innerHTML = meses[FechaOrigen.getMonth()] + " - " + FechaOrigen.getFullYear();
+	tabla.lastChild.firstChild.childNodes[1].innerHTML = meses[FechaOrigen.getMonth()] + " - " + FechaOrigen.getFullYear();
 	for(i=0; i<cant-1; i++){
 		tabla.lastChild.childNodes[4].childNodes[i+1].innerHTML = diaSemana[(FechaOrigen.getDay()+i+5)%7];
 		tmp = SumarDias(FechaOrigen, i-2);
