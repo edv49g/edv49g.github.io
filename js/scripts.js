@@ -252,3 +252,7 @@ function actual() {
 	FechaOrigen = new Date();
 	desarmarFecha();
 }
+function modo() {
+	document.documentElement.style.setProperty("--color-bg", "white");
+	document.documentElement.style.setProperty("--color-fg", "black");
+}
