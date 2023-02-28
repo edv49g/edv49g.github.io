@@ -1,5 +1,6 @@
 let indice = 0;
-let color = "#cb4335";
+//let color = "#cb4335";
+let oscuro = true;
 let cant = 7;
 let x0 = 0, t0 =0;
 let guardia = [1,2,3,4,5,6];
@@ -7,6 +8,7 @@ const colores = ["#6ec16e", "#d28a31", "#9a2626", "#4d4dcc", "#2727d2", "#17202a
 const diaSemana = [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"];
 const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 let patron = [1, 1, 1, 2, 2, 3, 3, 8, 8, 8, 8, 8, 1, 1, 2, 2, 2, 3, 3, 7, 7, 7, 7, 7, 1, 1, 2, 2, 3, 3, 3, 6, 6, 4, 4, 4, 5, 5, 4, 4, 6, 6]; //1:M , 2:T, 3:N, 4:D
+const clases = ["M", "T", "N", "D", "D", "F", "F", "F"];
 FechaOrigen = new Date();
 FechaInicio = new Date(2022,03,01); //G1, G2=G1-7d, Gx=G1-7*(x-1)d
 function inicializar(){
@@ -81,13 +83,16 @@ function calendario(){
 	ultimo = 32 - new Date(Fecha.getFullYear(), Fecha.getMonth(), 32).getDate();
 	for(j=1; j<7; j++){
 		for(i=0; i<7; i++){
+			tablita.lastChild.childNodes[j*2+2].childNodes[i].removeAttribute("style");//blanqueo estilo si tiene
 		    if ( (j-1)*7+i+1>inicio && dias<ultimo+1 ){
 			tablita.lastChild.childNodes[j*2+2].childNodes[i].innerHTML = dias;
-			tablita.lastChild.childNodes[j*2+2].childNodes[i].style = "background: " + colores[patron[(ddias+dias)%42]-1];
+			//tablita.lastChild.childNodes[j*2+2].childNodes[i].style = "background: " + colores[patron[(ddias+dias)%42]-1];
+			tablita.lastChild.childNodes[j*2+2].childNodes[i].className = clases[patron[(ddias+dias)%42]-1];
 			dias++;
 		    } else {
 			tablita.lastChild.childNodes[j*2+2].childNodes[i].innerHTML = "&nbsp;";
-			tablita.lastChild.childNodes[j*2+2].childNodes[i].removeAttribute("style");//blanqueo estilo si tiene
+			//tablita.lastChild.childNodes[j*2+2].childNodes[i].removeAttribute("style");//blanqueo estilo si tiene
+			tablita.lastChild.childNodes[j*2+2].childNodes[i].className = "F";
 		    }
 		}
 	}
@@ -96,7 +101,7 @@ function calendario(){
 	if( (Fecha.getFullYear() == Temporal.getFullYear()) && (Fecha.getMonth() == Temporal.getMonth()) ){
 		let fila = Math.trunc((Temporal.getDate() + inicio -1)/7) + 2;
 		let col = ((Temporal.getDate() + inicio+6) % 7);  
-		tablita.lastChild.childNodes[fila*2].childNodes[col].style.border = "dotted 3px";
+		tablita.lastChild.childNodes[fila*2].childNodes[col].style.outline = "3px solid red";
 	}
 }
 function mesPrevio(){
@@ -164,29 +169,35 @@ function pintar() {
 		for(j=0; j<8;j++){
 			valor = guardia.indexOf(j+1)+1;
 			tabla.lastChild.childNodes[3+j].childNodes[i+1].innerHTML = valor<1?"&nbsp;":valor;
-			tabla.lastChild.childNodes[3+j].childNodes[i+1].style.backgroundColor = colores[6]; //color de franco
+			//tabla.lastChild.childNodes[3+j].childNodes[i+1].style.backgroundColor = colores[6]; //color de franco
+			tabla.lastChild.childNodes[3+j].childNodes[i+1].className = "F";
 			if(document.getElementById("guardia").value == valor){
-				tabla.lastChild.childNodes[3+j].childNodes[i+1].style.backgroundColor = color;
+				//tabla.lastChild.childNodes[3+j].childNodes[i+1].style.backgroundColor = color;
+				tabla.lastChild.childNodes[3+j].childNodes[i+1].className = "guardia";
 			}
 		}
 	}
 }
 function mostrarSolapa(solapa) {
 	if(solapa == 1){
-                document.getElementsByClassName("menu")[0].style.backgroundColor = colores[6];
-                document.getElementsByClassName("menu")[1].style.backgroundColor = "inherit";
-		document.getElementsByClassName("menu")[0].style.color = "white";
-		document.getElementsByClassName("menu")[1].style.color = "#65696f";
-                document.getElementById("solapa2").style.display = "none";
-                document.getElementById("solapa1").style.display = "block";
-            } else {
-                document.getElementsByClassName("menu")[1].style.backgroundColor = colores[6];
-                document.getElementsByClassName("menu")[0].style.backgroundColor = "inherit";
-		document.getElementsByClassName("menu")[1].style.color = "white";
-		document.getElementsByClassName("menu")[0].style.color = "#65696f";
-                document.getElementById("solapa1").style.display = "none";
-                document.getElementById("solapa2").style.display = "block";
-            }
+		document.getElementsByClassName("menu")[0].className = "menu plano1";
+		document.getElementsByClassName("menu")[1].className = "menu plano2";
+		//document.getElementsByClassName("menu")[0].style.backgroundColor = colores[6];
+		//document.getElementsByClassName("menu")[1].style.backgroundColor = "inherit";
+		//document.getElementsByClassName("menu")[0].style.color = "white";
+		//document.getElementsByClassName("menu")[1].style.color = "#65696f";
+		document.getElementById("solapa2").style.display = "none";
+		document.getElementById("solapa1").style.display = "block";
+	} else {
+		document.getElementsByClassName("menu")[0].className = "menu plano2";
+		document.getElementsByClassName("menu")[1].className = "menu plano1";
+		//document.getElementsByClassName("menu")[1].style.backgroundColor = colores[6];
+		//document.getElementsByClassName("menu")[0].style.backgroundColor = "inherit";
+		//document.getElementsByClassName("menu")[1].style.color = "white";
+		//document.getElementsByClassName("menu")[0].style.color = "#65696f";
+		document.getElementById("solapa1").style.display = "none";
+		document.getElementById("solapa2").style.display = "block";
+	}
 }
 function modificarMes(){
 	document.getElementById("modal").style.display = "block";
@@ -253,6 +264,21 @@ function actual() {
 	desarmarFecha();
 }
 function modo() {
-	document.documentElement.style.setProperty("--color-bg", "white");
-	document.documentElement.style.setProperty("--color-fg", "black");
+	if(oscuro){
+		//colores para tema claro
+		document.documentElement.style.setProperty("--fondo1", "#eef4f9"); //fdfdfd
+		document.documentElement.style.setProperty("--frente1", "black");
+		document.documentElement.style.setProperty("--fondo2", "#f5f5f5");
+		document.documentElement.style.setProperty("--fondo3", "#e9e9e9");
+		colores[5] = colores[6] = colores[7] = "#f5f5f5";
+		document.getElementById("modo").innerHTML = "&#9686;";
+	} else { //colores para tema oscuro
+		document.documentElement.style.setProperty("--fondo1", "black");
+		document.documentElement.style.setProperty("--frente1", "white");
+		document.documentElement.style.setProperty("--fondo2", "#17202a");
+		document.documentElement.style.setProperty("--fondo3", "#292e2f");
+		colores[5] = colores[6] = colores[7] = "black";
+		document.getElementById("modo").innerHTML = "&#10039;";
+	}
+	oscuro = !oscuro;
 }
