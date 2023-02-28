@@ -177,6 +177,8 @@ function pintar() {
 			}
 		}
 	}
+	for(i=1; i<11; i++)
+		tabla.lastChild.childNodes[i].childNodes[Math.round(cant/2)-1].className += " c";
 }
 function mostrarSolapa(solapa) {
 	if(solapa == 1){
